@@ -8,6 +8,8 @@
         + If a plane lands, its `isFlying` property gets set to false.
 */
 
+const { directive } = require("@babel/types");
+
 // EXAMPLE SOLUTION CODE:
 class Airplane {
   constructor(name) {
@@ -42,7 +44,22 @@ class Airplane {
 */
 
 class Person {
-  
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+  eat(edible){
+    if(this.stomach.length < 10){
+      this.stomach.push(edible);
+    }
+  }
+  poop(){
+    this.stomach = [];
+  }
+  toString(){
+    return `${this.name}, ${this.age}`;
+  }
 }
 
 /*
@@ -60,8 +77,29 @@ class Person {
 */
 
 class Car {
-  
+  constructor(model, mpg){;
+  this.model = model;
+  this.milesPerGallon = mpg;
+  this.tank = 0;
+  this.odometer = 0;
 }
+  fill(gallons){
+    this.tank = this.tank + gallons;
+  }
+  drive(dist){
+    const travelMiles = this.tank * this.milesPerGallon;
+    if(dist <= travelMiles){
+      this.odometer = this.odometer + dist;
+      this.tank = this.tank - (dist / this.travelMiles);
+    } else {
+      this.odometer = this.odometer + travelMiles;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles!`
+    }
+   }
+  }
+  
+
 
 /*
   TASK 3
